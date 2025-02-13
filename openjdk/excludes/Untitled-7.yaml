@@ -1,0 +1,17 @@
+java/lang/StackWalker/VerifyStackTrace.java https://github.com/adoptium/aqa-tests/issues/1273 generic-all
+jdk/internal/loader/NativeLibraries/Main.java https://github.com/adoptium/aqa-tests/issues/1920 generic-all
+sun/management/HotspotClassLoadingMBean/GetClassInitializationTime.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+sun/management/HotspotClassLoadingMBean/GetClassLoadingTime.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+sun/management/HotspotClassLoadingMBean/GetInitializedClassCount.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+sun/management/HotspotClassLoadingMBean/GetLoadedClassSize.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+sun/management/HotspotClassLoadingMBean/GetMethodDataSize.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+sun/management/HotspotClassLoadingMBean/GetUnloadedClassSize.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+sun/management/HotspotRuntimeMBean/GetSafepointCount.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+sun/management/HotspotRuntimeMBean/GetSafepointSyncTime.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+sun/management/HotspotRuntimeMBean/GetTotalSafepointTime.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+sun/management/HotspotThreadMBean/GetInternalThreads.java https://github.com/adoptium/aqa-tests/issues/932 generic-all
+java/io/CharArrayReader/OverflowInRead.java https://github.com/adoptium/aqa-tests/issues/1500 generic-all
+java/nio/channels/DatagramChannel/MulticastSendReceiveTests.java https://github.com/adoptium/aqa-tests/issues/1267 generic-all
+java/nio/channels/DatagramChannel/Promiscuous.java  https://github.com/adoptium/infrastructure/issues/699   generic-all
+sun/security/lib/cacerts/VerifyCACerts.java	https://github.com/adoptium/aqa-tests/issues/2123	generic-all
+sun/security/ssl/X509TrustManagerImpl/Symantec/Distrust.java	https://github.com/adoptium/aqa-tests/issues/2123	generic-all
