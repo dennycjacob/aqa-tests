@@ -40,6 +40,6 @@
 		</exec>
 	</target>
 	<target name="build" >
-		 <antcall target="configure" inheritall="true">
+		 <antcall target="configure" inheritall="true" />
 	</target>
 </project>
