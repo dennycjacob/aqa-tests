@@ -261,7 +261,6 @@ case $SCENARIO in
 		echo "Current working directory is ${CLIENT_WORK_DIR}"
 		echo "Running configure.sh"
 		echo "Contents of ${CLIENT_WORK_DIR}:"
-		ls -la
         while [[ "`. ./configure.sh ${DT3_RUNTIME_MODE} | grep -c -i \"Configuration Updated\"`" == "0" ]]; do
             let WAIT_TOTAL=WAIT_TOTAL+WAIT_TIME
 
