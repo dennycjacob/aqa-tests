@@ -133,7 +133,7 @@ JMeter)
 		exit 5
 	fi
 	;;
-esac	
+esac
 
 echo "cleaning up left over files"
 
@@ -177,18 +177,18 @@ TradeAppDerby)
 	SCRIPT_IWL="TradeApp.jxs -f TradeApp.conf"
 	;;
 
-Primitive) 
+Primitive)
 	SCRIPT_IWL="Primitive.jxs -f Primitive.conf"
 	EXTRA_IWL="--define url=/tradelite/servlet/${PRIMITIVE}"
 
 	;;
 
-DayTraderCrypto) 
+DayTraderCrypto)
 	SCRIPT_JMeter=daytrader3.jmx
 	SCRIPT_IWL="ssl_daytrader3.jxs -f TradeApp.conf"
 	;;
 
-DayTraderRU) 
+DayTraderRU)
 	SCRIPT_JMeter=daytrader3.jmx
 	SCRIPT_IWL="daytrader3.jxs -f TradeApp.conf"
 	;;
@@ -229,7 +229,7 @@ DayTraderSSL | DayTrader7SSL | JMS)
 	sudo su -c " echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse"
 	tcp_fin_timeout=`cat /proc/sys/net/ipv4/tcp_fin_timeout`
 	echo 'sudo su -c " echo 30 > /proc/sys/net/ipv4/tcp_fin_timeout"'
-	sudo su -c " echo 30 > /proc/sys/net/ipv4/tcp_fin_timeout"	
+	sudo su -c " echo 30 > /proc/sys/net/ipv4/tcp_fin_timeout"
 	;;
 *)
 	# Use defaults
@@ -255,10 +255,13 @@ case $SCENARIO in
 
         MAX_WAIT=30
         WAIT_TIME=5
-		
+
 		#reqired for to run the configure script
 		cd ${CLIENT_WORK_DIR}
-
+		echo "Current working directory is ${CLIENT_WORK_DIR}"
+		echo "Running configure.sh"
+		echo "Contents of ${CLIENT_WORK_DIR}:"
+		ls -la
         while [[ "`. ./configure.sh ${DT3_RUNTIME_MODE} | grep -c -i \"Configuration Updated\"`" == "0" ]]; do
             let WAIT_TOTAL=WAIT_TOTAL+WAIT_TIME
 
@@ -268,7 +271,7 @@ case $SCENARIO in
                 echo "!!! ERROR !!! Configuration failed after ${WAIT_TOTAL}s. Exiting"
                 exit
             fi
-            
+
             # Keep waiting
             echo "Waiting for configuration to succeed... (${WAIT_TOTAL})"
             sleep ${WAIT_TIME}
@@ -309,18 +312,18 @@ do
 	let runNo=runNo+1
 	echo "Running 1 client warmup"
 	./reset.sh
-	
+
 	# CPU
 	bash cpu.sh 60 warmup ${runNo} ${CLIENT} ${SERVER_WORKDIR} ${WAS_HOST} ${DB_HOST} ${NET_PROTOCOL} ${HOST_MACHINE_USER} ${CLIENT_MACHINE_USER} ${DB_MACHINE_USER} ${DB_SERVER_WORKDIR} &
-	
+
 	CPU_PID=$!
-	
+
 	# trade
 	. ./trade.sh warmup warmup >> ${results}
 
-	
+
 	wait ${CPU_PID}
-	
+
 	sleep 1
 done
 
@@ -329,18 +332,18 @@ for(( i=0; i<${WARMUPS}; i++ ))
 do
 	let runNo=runNo+1
 	#./reset.sh no reset in 16_01 and later
-	
+
 	# CPU
 	bash cpu.sh ${WARMUP_TIME} warmup ${runNo} ${CLIENT} ${SERVER_WORKDIR} ${WAS_HOST} ${DB_HOST} ${NET_PROTOCOL} ${HOST_MACHINE_USER} ${CLIENT_MACHINE_USER} ${DB_MACHINE_USER} ${DB_SERVER_WORKDIR} &
-	
+
 	CPU_PID=$!
-	
+
 	# trade
 
 	. ./trade.sh  ${WARMUP_TIME} warmup >> ${results}
-	
+
 	wait ${CPU_PID}
-	
+
 	sleep 1
 done
 
@@ -355,7 +358,7 @@ for(( i=0; i<${MEASURES}; i++ ))
 do
 	let runNo=runNo+1
 	#./reset.sh no reset in 16_01 and later
-	
+
 	# CPU
 	bash cpu.sh ${MEASURE_TIME} measure ${runNo} ${CLIENT} ${SERVER_WORKDIR} ${WAS_HOST} ${DB_HOST} ${NET_PROTOCOL} ${HOST_MACHINE_USER} ${CLIENT_MACHINE_USER} ${DB_MACHINE_USER} ${DB_SERVER_WORKDIR} &
 	CPU_PID=$!
@@ -375,7 +378,7 @@ do
 		wait ${PROFILING_TOOL_PID}
 	fi
 	wait ${CPU_PID}
-	
+
 	sleep 1
 done
 
@@ -397,7 +400,7 @@ case $SCENARIO in
 	DayTraderSSL | DayTrader7SSL)
 		for(( clientIterator=1; clientIterator<=${JMETER_INSTANCES}; clientIterator++ ))
 		do
-			echo "</iteration>" >>  client${clientIterator}.txt 
+			echo "</iteration>" >>  client${clientIterator}.txt
 		done
 		echo "restoring SSL specific values to default:"
 		echo "sudo su -c  echo $tcp_tw_reuse > /proc/sys/net/ipv4/tcp_tw_reuse"
